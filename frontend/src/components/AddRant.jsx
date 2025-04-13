@@ -35,10 +35,13 @@ function Addrant(props) {
 
 
   const addRant = async () => {
+    
     if (rant === '') {
       alert('Put Some Message');
       return;
     }
+    if (submitting) return;
+
     setIsSubmitting(true);
     const newRant = {
       name: "Anonymous Yapper",
