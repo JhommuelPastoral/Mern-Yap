@@ -19,12 +19,13 @@ function Body() {
   const [message, setMessage] = useState('');
   const [deleteRant, showDeleteRant] = useState(false);
 
+
   useEffect(() => {
     const fetchRants = async (isInitial = false) => {
       if (isInitial) setLoading(true); // only show skeleton on first load
 
       try {
-        const res = await axios.get('https://mern-yap-backend.onrender.com/api/rants');
+        const res = await axios.get('/api/rants');
         setRants(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching rants:', err.message);

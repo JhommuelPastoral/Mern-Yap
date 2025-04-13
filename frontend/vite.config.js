@@ -9,7 +9,9 @@ export default defineConfig({
   server:{
     proxy:{
       "/api":{
-        target:"http://localhost:5000"
+        target:"https://mern-yap-backend.onrender.com",
+        changeOrigin: true,        // <-- this helps with CORS
+        secure: false,  
       }
     }
   }
