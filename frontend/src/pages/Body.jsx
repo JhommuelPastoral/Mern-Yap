@@ -6,12 +6,10 @@ import Addrant from '../components/AddRant.jsx';
 import EditRant from '../components/EditRant.jsx';
 import DeleteYap from '../components/DeleteRant.jsx';
 
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+
 
 function Body(){
   const [rants, setRants] = useState([]);
-  const[isfetching, setFetching] = useState(false);
   const [addRant, showAddRant] = useState(false);
   const [refresh, setRefresh] = useState(false); 
 
@@ -25,14 +23,11 @@ function Body(){
   useEffect(() => {
     const fetchRants = async () => {
       try {
-        setFetching(true);
         const res = await axios.get('https://mern-yap-backend.onrender.com/api/rants');
         setRants(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching rants:', err.message);
-      } finally{
-        setFetching(false);
-      }
+      } 
     };
   
     fetchRants(); // initial fetch
@@ -41,15 +36,7 @@ function Body(){
     return () => clearInterval(interval); // clean up on unmount
   }, []);
   
-  if(isfetching){
-    return (
-      <SkeletonTheme baseColor="#202020" highlightColor="#444">
-        <div className="flex flex-col gap-[10px]">
-          <Skeleton height={100} count={5} />
-        </div>
-    </SkeletonTheme>
-    )
-  }
+
 
 
   return(
@@ -76,17 +63,13 @@ function Body(){
           <div className="flex justify-between items-center ">
             <div className="flex justify-center items-center gap-[10px]">
               <img src={Profile} className="w-[40px] h-[40px] rounded-full object-center object-cover" />
-              <p className="text-white font-semibold flex items-center gap-[2px]"> {data.name} <span className="text-green-500 text-lg "> &middot;</span> </p>
+              <div>
+                <p className="text-white font-semibold flex items-center gap-[2px] m-0"> {data.name} <span className="text-green-500 text-lg "> &middot;</span> </p>
+                <p className="text-gray-400 m-0 "> {data.date}, {data.time}</p>
+              </div>
             </div>
-            
-            <div className="flex gap-[10px]">
-              <button className="text-white cursor-pointer " onClick={()=>{setId(data._id); setMessage(data.rant); showEditRant(true)}}>Edit</button>
-              <button className="text-white cursor-pointer" onClick={()=>{showDeleteRant(true); setId(data._id); }}>Delete</button>
-            </div>
-          
           </div>
-          <p className="text-gray-400 mt-[10px]"> {data.date}, {data.time}</p>
-          <p className="text-gray-300 text-balance text-justify break-all">
+          <p className="text-gray-300 text-justify break-words">
             {data.rant}
           </p>
         </div>

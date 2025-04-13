@@ -32,7 +32,7 @@ function DeleteYap(props) {
 
   const deleteRant = async () => {
     try {
-      await axios.delete(`https://mern-yap-backend.onrender.comhttps://mern-yap-backend.onrender.com/api/rants/${props.id}`);
+      await axios.delete(`https://mern-yap-backend.onrender.com/api/rants/${props.id}`);
       props.refresh();
       props.showDeleteRant();
       notifySuccess();
