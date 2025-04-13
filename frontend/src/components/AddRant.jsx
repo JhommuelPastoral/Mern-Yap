@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Addrant(props) {
   const [rant, setRant] = useState('');
+  const [submitting, setIsSubmitting] = useState(false);
 
   const notifySuccess = () => toast('Rant Added Successfully', {
     position: "bottom-center",
@@ -38,7 +39,7 @@ function Addrant(props) {
       alert('Put Some Message');
       return;
     }
-
+    setIsSubmitting(true);
     const newRant = {
       name: "Anonymous Yapper",
       rant,
@@ -55,6 +56,8 @@ function Addrant(props) {
     } catch (err) {
       notifyFail();
       console.error("Error posting rant:", err.message);
+    } finally{
+      setIsSubmitting(false);
     }
   };
 
