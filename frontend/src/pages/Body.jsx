@@ -29,9 +29,13 @@ function Body(){
         console.error('Error fetching rants:', err.message);
       }
     };
-
-    fetchRants();
-  }, [refresh]);
+  
+    fetchRants(); // initial fetch
+    const interval = setInterval(fetchRants, 5000); // every 5 seconds
+  
+    return () => clearInterval(interval); // clean up on unmount
+  }, []);
+  
 
   return(
     <main className="md:hidden mx-[10px] font-poppins mt-[10px] max-w-[1100px] pb-[50px] flex flex-col gap-[10px]  ">
