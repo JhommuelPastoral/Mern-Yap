@@ -6,10 +6,12 @@ import Addrant from '../components/AddRant.jsx';
 import EditRant from '../components/EditRant.jsx';
 import DeleteYap from '../components/DeleteRant.jsx';
 
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function Body(){
   const [rants, setRants] = useState([]);
-
+  const[isfetching, setFetching] = useState(false);
   const [addRant, showAddRant] = useState(false);
   const [refresh, setRefresh] = useState(false); 
 
@@ -23,10 +25,13 @@ function Body(){
   useEffect(() => {
     const fetchRants = async () => {
       try {
+        setFetching(true);
         const res = await axios.get('https://mern-yap-backend.onrender.com/api/rants');
         setRants(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching rants:', err.message);
+      } finally{
+        setFetching(false);
       }
     };
   
@@ -36,6 +41,16 @@ function Body(){
     return () => clearInterval(interval); // clean up on unmount
   }, []);
   
+  if(isfetching){
+    return (
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+        <div className="flex flex-col gap-[10px]">
+          <Skeleton height={100} count={5} />
+        </div>
+    </SkeletonTheme>
+    )
+  }
+
 
   return(
     <main className="md:hidden mx-[10px] font-poppins mt-[10px] max-w-[1100px] pb-[50px] flex flex-col gap-[10px]  ">
