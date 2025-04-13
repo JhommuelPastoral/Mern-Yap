@@ -47,7 +47,7 @@ function Addrant(props) {
     };
 
     try {
-      await axios.post('/api/rants', newRant);
+      await axios.post('https://mern-yap-backend.onrender.com/api/rants', newRant);
       props.showAddRant();
       props.refresh();
       setRant('');

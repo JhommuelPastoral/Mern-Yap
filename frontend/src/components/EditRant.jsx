@@ -44,7 +44,7 @@ function EditRant(props){
     };
   
     try {
-      await axios.put(`/api/rants/${props.id}`, updateYap);
+      await axios.put(`https://mern-yap-backend.onrender.com/api/rants/${props.id}`, updateYap);
       console.log('Rant updated successfully');
       props.showEditRant();
       props.refresh();
