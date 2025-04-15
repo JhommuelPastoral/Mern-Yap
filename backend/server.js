@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import connectDb from './config/db.js';
 import router from './routes/rant.routes.js';
+import chatRouter from './routes/chats.routes.js';
 import cors from 'cors';
 
 // config 
@@ -11,6 +12,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use('/api/rants', router);
+app.use('/api/chats', chatRouter);
 
 app.listen(5000, ()=>{
   console.log('Server is running')

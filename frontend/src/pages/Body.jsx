@@ -5,19 +5,21 @@ import { useState, useEffect } from 'react';
 import Addrant from '../components/AddRant.jsx';
 import EditRant from '../components/EditRant.jsx';
 import DeleteYap from '../components/DeleteRant.jsx';
-
+import Chats from './Chat.jsx';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function Body() {
   const [rants, setRants] = useState([]);
-  const [loading, setLoading] = useState(true); // ← Add this
+  const [loading, setLoading] = useState(true);
   const [addRant, showAddRant] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [editRant, showEditRant] = useState(false);
   const [id, setId] = useState('');
   const [message, setMessage] = useState('');
   const [deleteRant, showDeleteRant] = useState(false);
+  const [chats, showChats] = useState(false);
+
 
   useEffect(() => {
     const fetchRants = async (isInitial = false) => {
@@ -103,6 +105,14 @@ function Body() {
         id={id}
         refresh={() => setRefresh(!refresh)}
       />
+      <div className={`${chats ? 'hidden' : 'fixed'} bottom-0 right-[10px] bg-gray-800/80 font-poppins`}>
+        <p className="text-white font-semibold p-[10px] " onClick={()=>{showChats(true)}}> Open Chats</p>
+
+      </div>
+      <Chats
+            chats = {chats}
+            hideChat = {()=>{showChats(false)}}
+          />      
     </main>
   );
 }

@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 
-const rantSchema = new mongoose.Schema({
+const chatSchema = new mongoose.Schema({
 
   name:{
     type: String,
     required: true
   },
 
-  rant:{
+  message:{
     type: String,
     required: true
   },
-
+  
   date:{
     type: String,
     required: true
@@ -23,7 +23,8 @@ const rantSchema = new mongoose.Schema({
   }
 
 
-}, {timestamps: true});
+} , {timestamps: true});
+const Chats = mongoose.model('Chats', chatSchema);
 
-const Rant = mongoose.model('Rants', rantSchema);
-export default Rant;
+export default Chats;
+

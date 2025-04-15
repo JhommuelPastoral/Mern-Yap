@@ -43,7 +43,7 @@ export default function Header(props) {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {navigation.map((item) => (
+                  {navigation.slice(0,3).map((item) => (
                     <a
                       key={item.name}
                       aria-current={item.current ? 'page' : undefined}
