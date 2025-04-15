@@ -89,7 +89,7 @@ function Body() {
             <p className="text-gray-300 text-justify break-words">{data.rant}</p>
           </div>
         ))
-      )}
+      )}=
 
       <EditRant
         editRant={editRant}
@@ -105,8 +105,8 @@ function Body() {
         id={id}
         refresh={() => setRefresh(!refresh)}
       />
-      <div className={`${chats ? 'hidden' : 'fixed'} bottom-0 right-[10px] bg-gray-800/80 font-poppins`}>
-        <p className="text-white font-semibold p-[10px] " onClick={()=>{showChats(true)}}> Open Chats</p>
+      <div className={`${chats ? 'hidden' : 'fixed'} bottom-0 right-[10px] bg-gray-800/80 font-poppins rounded-md z-10`}>
+        <p className="text-white font-semibold px-[20px] py-[5px] " onClick={()=>{showChats(true)}}> Open Chats</p>
 
       </div>
       <Chats
