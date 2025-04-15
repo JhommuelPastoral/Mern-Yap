@@ -55,7 +55,7 @@ function Addrant(props) {
       props.showAddRant();
       props.refresh();
       setRant('');
-      notifySuccess(); // show toast
+      notifySuccess(); 
     } catch (err) {
       notifyFail();
       console.error("Error posting rant:", err.message);
@@ -67,12 +67,12 @@ function Addrant(props) {
   return (
     <>
       <div className={`${props.addRant ? 'fixed' : 'hidden'} inset-0 justify-center flex items-center bg-black/90`}>
-        <div className="bg-gray-800/80 p-[10px] rounded-xl flex flex-col gap-[10px] w-[calc(100vw-20px)] animate-zoom-in">
+        <div className="bg-gray-800/80 p-[10px] rounded-xl  flex flex-col gap-[10px] w-[calc(100vw-20px)] md:w-[500px] lg:w-[800px] animate-zoom-in">
           <p className="text-white font-semibold">Add Your Yap, Yapper:</p>
           <textarea
             value={rant}
             onChange={(event) => setRant(event.target.value)}
-            className="border-white border text-white h-[150px] text-balance px-[10px]"
+            className="border-white border text-white h-[150px] px-[10px] text-justify break-words"
           ></textarea>
 
           {/* Button Container */}

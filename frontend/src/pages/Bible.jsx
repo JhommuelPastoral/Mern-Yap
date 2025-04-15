@@ -30,7 +30,7 @@ function Bible() {
 
   return (
     <>
-      <div className="pb-[20px] font-poppins flex flex-col">
+      <div className="pb-[20px] font-poppins flex flex-col max-w-3xl mx-auto">
         {loading ? (
           <p className="text-white text-center mt-[20px]">⏳ Please wait a moment...</p>
         ) : (
@@ -47,13 +47,15 @@ function Bible() {
             </div>
           ))
         )}
-
-        <button
-          className="text-white bg-gray-800/80 mt-[10px] mx-[10px] p-[10px] rounded-full font-semibold"
-          onClick={() => setRefreshKey(!refreshKey)}
-        >
-          Refresh Bible Verse
-        </button>
+        <div className="justify-center items-center flex mt-[10px]  ">
+          <button
+            className="text-white bg-gray-800/80 mx-[10px] p-[10px] w-full md:w-[300px] cursor-pointer rounded-full  font-semibold"
+            onClick={() => setRefreshKey(!refreshKey)}
+          >
+            Refresh Bible Verse
+          </button>
+          
+        </div>
       </div>
     </>
   );

@@ -21,7 +21,7 @@ function Body() {
 
   useEffect(() => {
     const fetchRants = async (isInitial = false) => {
-      if (isInitial) setLoading(true); // only show skeleton on first load
+      if (isInitial) setLoading(true); 
 
       try {
         const res = await axios.get('https://mern-yap-backend.onrender.com/api/rants');
@@ -29,24 +29,24 @@ function Body() {
       } catch (err) {
         console.error('Error fetching rants:', err.message);
       } finally {
-        if (isInitial) setLoading(false); // stop skeleton only if it was first load
+        if (isInitial) setLoading(false); 
       }
     };
 
-    fetchRants(true); // call once with skeleton
+    fetchRants(true); 
 
     const interval = setInterval(() => {
-      fetchRants(false); // silent refresh every 5 seconds
+      fetchRants(false); 
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <main className="md:hidden mx-[10px] font-poppins mt-[10px] max-w-[1100px] pb-[50px] flex flex-col gap-[10px]">
-      <div className="flex justify-start gap-[10px] items-center p-[5px] rounded-full mb-[10px] bg-gray-800/80">
+    <main className="mx-[10px] xl:mx-auto font-poppins mt-[10px] max-w-3xl pb-[50px] flex flex-col gap-[10px]">
+      <div className="flex justify-start gap-[10px] items-center p-[5px] rounded-full  bg-gray-800/80">
         <img src={Profile} className="w-[40px] h-[40px] rounded-full object-center object-cover" />
-        <input onClick={() => showAddRant(true)} type="text" readOnly className="border border-white w-full rounded-full py-[5px] px-[10px] text-gray-400" placeholder="What's on your mind Yapper?" />
+        <input onClick={() => showAddRant(true)} type="text" readOnly className="border border-white w-full rounded-full py-[5px] px-[10px] text-gray-400 " placeholder="What's on your mind Yapper?" />
       </div>
 
       <Addrant

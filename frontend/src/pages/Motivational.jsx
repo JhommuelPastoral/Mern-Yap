@@ -14,7 +14,7 @@ function Motivational(){
         const data = await response.json();
         const motiv ={
           author: data.author,
-          content: data.text
+          content: data.quote
 
         }
         motivational.push(motiv);
@@ -30,7 +30,7 @@ function Motivational(){
   
   return (
     <>
-      <div className="pb-[20px] font-poppins flex flex-col">
+      <div className="pb-[20px] font-poppins flex flex-col max-w-3xl mx-auto">
         {loading ? (
           <p className="text-white text-center mt-[20px]">⏳ Please wait a moment...</p>
         ) : (
@@ -49,12 +49,15 @@ function Motivational(){
             ))}
           </div>
         )}
-        <button
-          className="text-white bg-gray-800/80 mt-[10px] mx-[10px] p-[10px] rounded-full font-semibold"
-          onClick={() => setRefreshKey(!refreshKey)}
-        >
-          Refresh Motivational Quotes
-        </button>
+        <div className="justify-center items-center flex mt-[10px]  ">
+          <button
+            className="text-white bg-gray-800/80 mx-[10px] p-[10px] w-full md:w-[300px] cursor-pointer rounded-full  font-semibold"
+            onClick={() => setRefreshKey(!refreshKey)}
+          >
+            Refresh Motivational Quotes
+          </button>
+          
+        </div>
       </div>
     </>
   );
