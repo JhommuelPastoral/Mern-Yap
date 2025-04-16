@@ -59,15 +59,15 @@ function Chats(props) {
     <>
       <div
         className={`${
-          props.chats ? 'fixed' : 'hidden'
-        } bottom-0 right-4 bg-gray-800/90 font-poppins w-[300px] h-[400px] rounded-t-lg shadow-lg flex flex-col`}
+          props.chats ? 'fixed animate-height' : 'hidden'
+        } bottom-0 right-4 bg-gray-800/90 font-poppins w-[300px] rounded-t-lg shadow-lg flex flex-col `}
       >
         {/* Header */}
         <div className="bg-gray-900 px-4 py-2 flex justify-between items-center text-white rounded-t-lg">
           <p className="font-semibold">Chats</p>
           <button
             onClick={() => props.hideChat()}
-            className="text-sm hover:text-red-400"
+            className="text-sm hover:text-red-400 cursor-pointer"
           >
             ✕
           </button>

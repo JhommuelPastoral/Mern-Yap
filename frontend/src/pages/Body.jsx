@@ -105,14 +105,14 @@ function Body() {
         id={id}
         refresh={() => setRefresh(!refresh)}
       />
-      <div className={`${chats ? 'hidden' : 'fixed'} bottom-0 right-[10px] bg-gray-800/80 font-poppins rounded-md z-10`}>
-        <p className="text-white font-semibold px-[20px] py-[5px] " onClick={()=>{showChats(true)}}> Open Chats</p>
-
+      <div className={`${chats ? 'hidden' : 'fixed'} bottom-0 right-[10px] bg-gray-800/80 font-poppins rounded-md z-10 flex justify-between px-[10px] cursor-pointer`}>
+        <p className="text-white font-semibold px-[20px] py-[5px] " onClick={()=>{showChats(true)}}> Open Global Chat</p>
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="w-[30px] " ><g><path fill="white" d="M12 2.59l9.46 9.45-1.42 1.42L12 5.41l-8.04 8.05-1.42-1.42L12 2.59zm0 7l9.46 9.45-1.42 1.42L12 12.41l-8.04 8.05-1.42-1.42L12 9.59z"></path></g></svg>
       </div>
       <Chats
-            chats = {chats}
-            hideChat = {()=>{showChats(false)}}
-          />      
+        chats = {chats}
+        hideChat = {()=>{showChats(false)}}
+      />      
     </main>
   );
 }

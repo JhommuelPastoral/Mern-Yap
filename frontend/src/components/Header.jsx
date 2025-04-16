@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Profile from '../assets/profile.jpg';
 const navigation = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Bibble Verse', href: '/Bible', current: false },
+  { name: 'Bible Verse', href: '/Bible', current: false },
   { name: 'Motivational Qoutes', href: '/Motivational', current: false },
   { name: 'Calendar', href: '/', current: false },
 ]
