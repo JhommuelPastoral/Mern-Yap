@@ -15,21 +15,24 @@ export default function Login() {
     
     e.preventDefault();
     const {email, password} = data;
+    const toastId = toast.loading('Logging in...');
     try {
-      const response = await axios.post('https://rantbackend.onrender.com/api/users/login', {email, password} );
-
-      if (response.data.error ) {
-        toast.error(response.data.error );
+      const response = await axios.post('https://rantbackend.onrender.com/api/users/login', { email, password });
+      toast.dismiss(toastId);
+    
+      if (response.data.error) {
+        toast.error(response.data.error);
       } else {
         toast.success('Login Successfully!');
         setData({ email: '', password: '' });
-        navigate('/Body')
+        navigate('/Body');
       }
-
     } catch (error) {
+      toast.dismiss(toastId);
       console.error(error);
-      toast.error('Something went wrong while registering.');
+      toast.error('Something went wrong while logging in.');
     }
+    
 
   };  
 
