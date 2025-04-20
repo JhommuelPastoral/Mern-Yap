@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Header from '../components/Header.jsx';
 function Bible() {
   const bibleApiUrl = import.meta.env.VITE_BIBLE_API;
   const [dataBible, setDataBible] = useState([]);
@@ -30,6 +30,7 @@ function Bible() {
 
   return (
     <>
+    <Header/>
       <div className="pb-[20px] font-poppins flex flex-col max-w-3xl mx-auto">
         {loading ? (
           <p className="text-white text-center mt-[20px]">⏳ Please wait a moment...</p>

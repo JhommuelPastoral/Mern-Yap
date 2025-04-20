@@ -8,7 +8,7 @@ import DeleteYap from '../components/DeleteRant.jsx';
 import Chats from './Chat.jsx';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
+import Header from '../components/Header.jsx';
 function Body() {
   const [rants, setRants] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ function Body() {
       if (isInitial) setLoading(true); 
 
       try {
-        const res = await axios.get('https://mern-yap-backend.onrender.com/api/rants');
+        const res = await axios.get('http://localhost:5173/api/rants');
         setRants(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching rants:', err.message);
@@ -45,6 +45,8 @@ function Body() {
   }, []);
 
   return (
+    <>
+    <Header/>
     <main className="mx-[10px] xl:mx-auto font-poppins mt-[10px] max-w-3xl pb-[50px] flex flex-col gap-[10px]">
       <div className="flex justify-start gap-[10px] items-center p-[5px] rounded-full  bg-gray-800/80">
         <img src={Profile} className="w-[40px] h-[40px] rounded-full object-center object-cover" />
@@ -114,6 +116,7 @@ function Body() {
         hideChat = {()=>{showChats(false)}}
       />      
     </main>
+    </>
   );
 }
 

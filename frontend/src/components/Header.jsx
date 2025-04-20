@@ -3,12 +3,12 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Profile from '../assets/profile.jpg';
+import axios from 'axios';
+
 const navigation = [
-  { name: 'Home', href: '/', current: true },
+  { name: 'Home', href: '/Body', current: true },
   { name: 'Bible Verse', href: '/Bible', current: false },
-  { name: 'Motivational Qoutes', href: '/Motivational', current: false },
-  { name: 'Calendar', href: '/', current: false },
-]
+  { name: 'Motivational Qoutes', href: '/Motivational', current: false }]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -16,7 +16,7 @@ function classNames(...classes) {
 
 
 
-export default function Header(props) {
+export default function Header() {
   const [navigate, setNavigate] = useState('Home');
   const navigateLink = useNavigate();
   return (
@@ -108,7 +108,14 @@ export default function Header(props) {
                   </MenuItem>
                   <MenuItem>
                     <a
-                      href="#"
+                      onClick ={async()=>{
+                        try {
+                          await axios.post('http://localhost:5173/api/users/logout');
+                          navigateLink('/');
+                        } catch (error) {
+                          console.error('Logout failed:', error);
+                        }
+                      }}
                       className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                       >
                       Sign out
@@ -136,7 +143,6 @@ export default function Header(props) {
           </div>
         </DisclosurePanel>
       </Disclosure>
-      {props.children}
   </>
   )
 }
