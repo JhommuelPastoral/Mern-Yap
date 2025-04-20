@@ -110,7 +110,7 @@ export default function Header() {
                     <a
                       onClick ={async()=>{
                         try {
-                          await axios.post('https://rantbackend.onrender.com/api/users/logout');
+                          await axios.post('https://mern-yap-backend.onrender.com/api/users/logout');
                           navigateLink('/');
                         } catch (error) {
                           console.error('Logout failed:', error);
