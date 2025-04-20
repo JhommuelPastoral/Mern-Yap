@@ -13,8 +13,8 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'https://rantfrontend.onrender.com', // your frontend
-  credentials: true                // 🔥 allow cookies
+  origin: 'https://mern-yap-frontend.onrender.com', 
+  credentials: true
 }));
 
 app.use('/api/rants', router);
