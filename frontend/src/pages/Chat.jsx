@@ -15,7 +15,7 @@ function Chats(props) {
       if (isInitial) setLoading(true); 
 
       try {
-        const res = await axios.get('https://mern-yap-backend.onrender.com/api/chats');
+        const res = await axios.get('https://rantbackend.onrender.com/api/chats');
         setChats(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching chats:', err.message);
