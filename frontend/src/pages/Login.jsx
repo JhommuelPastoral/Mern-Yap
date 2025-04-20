@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     const {email, password} = data;
     try {
-      const response = await axios.post('https://mern-yap-backend.onrender.com/api/users/login', {email, password} );
+      const response = await axios.post('https://rantbackend.onrender.com/api/users/login', {email, password} );
       if (response.data.error ) {
         toast.error(response.data.error );
       } else {
