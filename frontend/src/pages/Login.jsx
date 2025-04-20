@@ -12,7 +12,7 @@ export default function Login() {
   });
 
   const handleSubmit = async (e)=>{
-    
+    const toastId = toast.loading('Loading...');
     e.preventDefault();
     const {email, password} = data;
     try {
@@ -20,8 +20,10 @@ export default function Login() {
 
       if (response.data.error ) {
         toast.error(response.data.error );
+        toast.dismiss(toastId);
       } else {
         toast.success('Login Successfully!');
+        toast.dismiss(toastId);
         setData({ email: '', password: '' });
         navigate('/Body')
       }
