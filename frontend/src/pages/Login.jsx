@@ -11,30 +11,36 @@ export default function Login() {
 
   });
 
-  const handleSubmit = async (e)=>{
-    
-    e.preventDefault();
-    const {email, password} = data;
-    const toastId = toast.loading('Logging in...');
-    try {
-      const response = await axios.post('https://rantbackend.onrender.com/api/users/login', { email, password });
-      toast.dismiss(toastId);
-    
-      if (response.data.error) {
-        toast.error(response.data.error);
-      } else {
-        toast.success('Login Successfully!');
-        setData({ email: '', password: '' });
-        navigate('/Body');
-      }
-    } catch (error) {
-      toast.dismiss(toastId);
-      console.error(error);
-      toast.error('Something went wrong while logging in.');
-    }
-    
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { email, password } = data;
 
-  };  
+  const loginPromise = axios.post('https://rantbackend.onrender.com/api/users/login', {
+    email,
+    password,
+  });
+
+  toast.promise(loginPromise, {
+    loading: 'Logging in...',
+    success: 'Logged in successfully!',
+    error: 'Login failed.',
+  });
+
+  try {
+    const response = await loginPromise;
+
+    if (response.data.error) {
+      toast.error(response.data.error);
+    } else {
+      setData({ email: '', password: '' });
+      navigate('/Body');
+    }
+  } catch (error) {
+    console.error(error);
+    // You can optionally toast again, but the promise toast will already show error
+  }
+};
+
 
 
   return (
