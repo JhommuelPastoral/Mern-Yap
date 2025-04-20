@@ -10,7 +10,7 @@ export default function UserContextProvider({ children }) {
 
   useEffect(() => {
     // Call the profile endpoint
-    axios.get("https://rantbackend.onrender.com/api/users/profile")
+    axios.get("https://mern-yap-backend.onrender.com/api/users/profile")
       .then(({ data }) => {
         // If there's a valid user, set it
         if (data) {
