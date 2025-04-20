@@ -11,31 +11,34 @@ export default function Login() {
 
   });
 
-  const handleSubmit = async (e)=>{
-    
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const {email, password} = data;
+    const { email, password } = data;
     try {
-      const response = await axios.post('https://rantbackend.onrender.com/api/users/login', {email, password} );
-      toast.promise(response, {
-          loading: 'Loading',
-          success: 'Got the data',
-          error: 'Error when fetching',
-        });
-      if (response.data.error ) {
-        toast.error(response.data.error );
+      const loginPromise = axios.post('https://rantbackend.onrender.com/api/users/login', { email, password });
+
+      // Pass the login promise directly to toast.promise
+      toast.promise(loginPromise, {
+        loading: 'Loading...',
+        success: 'Logged in successfully!',
+        error: 'Error when fetching the login details.',
+      });
+
+      const response = await loginPromise;
+
+      if (response.data.error) {
+        toast.error(response.data.error);
       } else {
         toast.success('Login Successfully!');
         setData({ email: '', password: '' });
-        navigate('/Body')
+        navigate('/Body');
       }
 
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong while registering.');
+      toast.error('Something went wrong during login.');
     }
-
-  };  
+  };
 
 
   return (
