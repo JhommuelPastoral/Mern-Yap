@@ -26,7 +26,7 @@ function Body() {
       if (isInitial) setLoading(true); 
 
       try {
-        const res = await axios.get('http://localhost:5173/api/rants');
+        const res = await axios.get('https://rantbackend.onrender.com/api/rants');
         setRants(res.data.data.reverse());
       } catch (err) {
         console.error('Error fetching rants:', err.message);
