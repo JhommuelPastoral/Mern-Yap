@@ -17,7 +17,7 @@ export default function Register() {
   
     try {
       const { email, password } = data;
-      const response = await axios.post('http://localhost:5000/api/users/register', { email, password });
+      const response = await axios.post('https://mern-yap-backend.onrender.com/api/users/register', { email, password });
   
       if (response.data.error ) {
         toast.error(response.data.error );
