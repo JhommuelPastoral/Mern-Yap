@@ -17,6 +17,11 @@ export default function Login() {
     const {email, password} = data;
     try {
       const response = await axios.post('https://rantbackend.onrender.com/api/users/login', {email, password} );
+      toast.promise(response, {
+          loading: 'Loading',
+          success: 'Got the data',
+          error: 'Error when fetching',
+        });
       if (response.data.error ) {
         toast.error(response.data.error );
       } else {
