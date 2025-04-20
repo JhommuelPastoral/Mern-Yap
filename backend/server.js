@@ -13,7 +13,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend
+  origin: 'https://mern-yap-frontend.onrender.com', // your frontend
   credentials: true                // 🔥 allow cookies
 }));
 
