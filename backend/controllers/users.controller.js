@@ -4,9 +4,6 @@ import validator from 'validator';
 import bcrpyt from 'bcrypt';
 import bcrypt from 'bcrypt';
 
-const createJson = (_id)=>{
-  return jwt.sign({_id}, process.env.Secret,{expiresIn: '3d'});
-}
 
 const hashPassword = (password)=>{
 
@@ -81,8 +78,11 @@ export const login = async (req,res)=>{
         if(error){
           throw error;
         }
-        res.cookie('token', token).json(User);
-      })
+        res.cookie('token', token, {
+          httpOnly: true,
+          secure: true, // required if using HTTPS (which Render does)
+          sameSite: 'None', // allows cross-site cookies
+        }).json(User);})
     }
     if(!match){
       return res.json({ error: "Password does not match" }); 
