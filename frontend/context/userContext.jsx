@@ -7,6 +7,7 @@ export const UserContext = createContext({});
 export default function UserContextProvider({ children }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [navigationHeader, setNavigate] = useState('Home');
 
   useEffect(() => {
     // Call the profile endpoint
