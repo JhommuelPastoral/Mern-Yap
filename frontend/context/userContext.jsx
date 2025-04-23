@@ -30,7 +30,7 @@ export default function UserContextProvider({ children }) {
   }, []);
   
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser,navigationHeader,setNavigate }}>
       {children}
     </UserContext.Provider>
   );
