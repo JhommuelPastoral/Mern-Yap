@@ -1,10 +1,10 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Profile from '../assets/profile.jpg';
 import axios from 'axios';
-
+import {UserContext} from '../../context/userContext';
 const navigation = [
   { name: 'Home', href: '/Body', current: true },
   { name: 'Bible Verse', href: '/Bible', current: false },
@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 
 export default function Header() {
-  const [navigate, setNavigate] = useState('Home');
+  const {navigationHeader,setNavigate} = useContext(UserContext);
   const navigateLink = useNavigate();
   return (
     <>
@@ -52,7 +52,7 @@ export default function Header() {
                         navigateLink(item.href);
                       }}
                       className={`${
-                        navigate === item.name
+                        navigationHeader === item.name
                           ? 'bg-gray-900 text-white'
                           : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                       } block rounded-md px-3 py-2 text-base font-medium cursor-pointer`}
@@ -135,7 +135,7 @@ export default function Header() {
               as="a"
               aria-current={item.current ? 'page' : undefined}
               onClick={()=>{setNavigate(item.name); navigateLink(item.href)}}
-              className={`${navigate === item.name ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block rounded-md px-3 py-2 text-base font-medium`}
+              className={`${navigationHeader === item.name ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block rounded-md px-3 py-2 text-base font-medium`}
               >
                 {item.name}
               </DisclosureButton>
