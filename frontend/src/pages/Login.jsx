@@ -11,29 +11,37 @@ export default function Login() {
 
   });
 
-  const handleSubmit = async (e)=>{
-    const toastId = toast.loading('Loading...');
-    e.preventDefault();
-    const {email, password} = data;
-    try {
-      const response = await axios.post('https://mern-yap-backend.onrender.com/api/users/login', {email, password} );
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { email, password } = data;
+  const toastId = toast.loading('Loading...');
 
-      if (response.data.error ) {
-        toast.error(response.data.error );
-        toast.dismiss(toastId);
-      } else {
-        toast.success('Login Successfully!');
-        toast.dismiss(toastId);
-        setData({ email: '', password: '' });
-        navigate('/Body')
-      }
+  try {
+    const promise = axios.post('https://mern-yap-backend.onrender.com/api/users/login', { email, password });
 
-    } catch (error) {
-      console.error(error);
-      toast.error('Something went wrong while registering.');
+    toast.promise(promise, {
+      loading: 'Loading...',
+      success: 'Login Successfully!',
+      error: 'Error when logging in',
+    });
+
+    const response = await promise;
+
+    if (response.data.error) {
+      toast.error(response.data.error);
+    } else {
+      toast.dismiss(toastId);
+      setData({ email: '', password: '' });
+      navigate('/Body');
     }
 
-  };  
+  } catch (error) {
+    console.error(error);
+    toast.dismiss(toastId);
+    toast.error('Something went wrong while logging in.');
+  }
+};
+
 
 
   return (
