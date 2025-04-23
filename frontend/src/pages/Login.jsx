@@ -13,18 +13,15 @@ export default function Login() {
 
   const handleSubmit = async (e)=>{
     const toastId = toast.loading('Loading...');
+    
     e.preventDefault();
     const {email, password} = data;
     try {
       const response = await axios.post('https://mern-yap-backend.onrender.com/api/users/login', {email, password} );
-      toast.promise(response, {
-        loading: 'Loading',
-        success: 'Got the data',
-        error: 'Error when fetching',
-      });
-      
+    
       if (response.data.error ) {
         toast.error(response.data.error );
+        toast.dismiss(toastId);
       } else {
         toast.success('Login Successfully!');
         toast.dismiss(toastId);
