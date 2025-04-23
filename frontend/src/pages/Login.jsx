@@ -14,7 +14,6 @@ export default function Login() {
 const handleSubmit = async (e) => {
   e.preventDefault();
   const { email, password } = data;
-  const toastId = toast.loading('Loading...');
 
   try {
     const promise = axios.post('https://mern-yap-backend.onrender.com/api/users/login', { email, password });
@@ -37,7 +36,6 @@ const handleSubmit = async (e) => {
 
   } catch (error) {
     console.error(error);
-    toast.dismiss(toastId);
     toast.error('Something went wrong while logging in.');
   }
 };
